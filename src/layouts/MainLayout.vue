@@ -24,7 +24,15 @@
             name="players"
             label="Players"
           />
+          <q-tab
+            @click="$router.replace('/login')"
+            icon-right="login"
+            name="login"
+            label="login"
+          />
         </q-tabs>
+     
+        
       </q-toolbar>
     </q-header>
     <q-page-container>
