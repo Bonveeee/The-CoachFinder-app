@@ -1,9 +1,9 @@
 <template>
-  <q-page-container>
-    <q-page padding>
-      <!-- content -->
       <section>
-        <div>FIlTER</div>
+        <q-page-container>
+      <!-- content -->
+       <coach-filter @change-filter="setFilter"></coach-filter>
+    </q-page-container>
       </section>
 
       <section>
@@ -34,8 +34,8 @@
           <h3 v-else>No coaches found</h3>
         </base-card>
       </section>
-    </q-page>
-  </q-page-container>
+  
+
 </template>
 
 <script>
@@ -43,20 +43,49 @@ import { defineComponent, ref } from "vue";
 import CoachList from "src/components/CoachList.vue";
 import BaseCard from "src/components/UI/BaseCard.vue";
 import BaseButton from "src/components/UI/BaseButton.vue";
+import CoachFilter from "src/components/CoachFilter.vue";
 export default defineComponent({
   name: "CoachesPage",
   setup() {
+   
     const tab = ref("login");
     return { tab };
   },
+  data() {
+      return {
+        activeFilters:{
+          frontend: true,
+          backend: true,
+          career: true,
+        }
+      }
+    },
   components: {
     CoachList,
     BaseCard,
     BaseButton,
+    CoachFilter,
+  },
+  methods: {
+    setFilter(updatedFilters){
+      this.activeFilters = updatedFilters
+    }
   },
   computed: {
     filteredCoaches() {
-      return this.$store.getters["coaches/coaches"];
+      const coaches = this.$store.getters["coaches/coaches"];
+      return coaches.filter(coach => {
+        if ( this.activeFilters.frontend && coach.areas.includes('frontend')){
+          return true;
+        }
+        if ( this.activeFilters.frontend && coach.areas.includes('backend')){
+          return true;
+        }
+        if ( this.activeFilters.frontend && coach.areas.includes('career')){
+          return true;
+        }
+        return false;
+        })
     },
     hasCoaches() {
       return this.$store.getters["coaches/hasCoaches"];
