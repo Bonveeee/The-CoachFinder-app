@@ -12,6 +12,7 @@ const routes = [
       {
         path: "/coaches/:id",
         component: () => import("components/CoachDetail.vue"),
+        props: true,
         children: [
           {
             path: "/coaches/:id/contact",
