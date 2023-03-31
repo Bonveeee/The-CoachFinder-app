@@ -8,23 +8,21 @@
 </template>
 
 <script>
-import CoachForm from './CoachForm.vue'
+import CoachForm from "./CoachForm.vue";
 import BaseCard from "src/components/UI/BaseCard.vue";
 export default {
-  components:
-  {
+  components: {
     CoachForm,
-    BaseCard
+    BaseCard,
   },
-methods: {
-  saveData(data)
-  {
-    this.$store.dispatch('coaches/registerCoach', data)
-  this.$router.replace('/coaches')
-  }
-},
-
-}
+  methods: {
+    saveData(data) {
+      //adds new coach
+      this.$store.dispatch("coaches/registerCoach", data);
+      this.$router.replace("/coaches");
+    },
+  },
+};
 </script>
 
 <style scoped>
