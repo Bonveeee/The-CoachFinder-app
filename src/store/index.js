@@ -18,6 +18,22 @@ export default store(function (/* { ssrContext } */) {
     modules: {
      coaches: coachesModule
     },
+    state(){
+      return {
+        userId: 'c3'
+      }
+    },
+    getters: {
+      coaches(state){
+        return state.coaches
+      }
+    },
+    getters:{
+      userId(state){
+        return state.userId
+      }
+    },
+
 
     // enable strict mode (adds overhead!)
     // for dev mode and --debug builds only

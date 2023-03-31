@@ -31,13 +31,14 @@
         </div>
       </div>
     </div>
-    <base-button>Register</base-button>
+    <base-button >Register</base-button>
   </form>
 </template>
 
 <script>
 import BaseButton from "src/components/UI/BaseButton.vue";
 export default {
+    emits: ['save-data'],
   // name: 'PageName',
   components: {
     BaseButton,
@@ -63,7 +64,7 @@ export default {
         rate: this.rate,
         areas: this.areas,
       };
-      console.log(formData);
+     this.$emit('save-data', formData)
     },
   },
 };

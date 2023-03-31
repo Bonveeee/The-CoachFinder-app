@@ -11,6 +11,7 @@
           <div class="controls">
             <base-button mode="outline">refresh</base-button>
             <base-button 
+            v-if="!isCoach"
               v-model="tab"
             @click="$router.replace('/login')"
               icon-right="Register"
@@ -72,6 +73,11 @@ export default defineComponent({
     }
   },
   computed: {
+ 
+  isCoach(){
+    return this.$store.getters['coaches/isCoach']
+  },
+
     filteredCoaches() {
       const coaches = this.$store.getters["coaches/coaches"];
       return coaches.filter(coach => {

@@ -1,20 +1,29 @@
 <template>
   <section>
     <base-card>
-    <h2>Register As A Coach Now!</h2>
-    <coach-form></coach-form>
-  </base-card>
+      <h2>Register As A Coach Now!</h2>
+      <coach-form @save-data="saveData"></coach-form>
+    </base-card>
   </section>
 </template>
 
 <script>
 import CoachForm from './CoachForm.vue'
-
+import BaseCard from "src/components/UI/BaseCard.vue";
 export default {
   components:
   {
-    CoachForm
+    CoachForm,
+    BaseCard
+  },
+methods: {
+  saveData(data)
+  {
+    this.$store.dispatch('coaches/registerCoach', data)
+  this.$router.replace('/coaches')
   }
+},
+
 }
 </script>
 
@@ -29,7 +38,7 @@ label {
   margin-bottom: 0.5rem;
 }
 
-input[type='checkbox'] + label {
+input[type="checkbox"] + label {
   font-weight: normal;
   display: inline;
   margin: 0 0 0 0.5rem;
@@ -50,13 +59,13 @@ textarea:focus {
   border-color: #3d008d;
 }
 
-input[type='checkbox'] {
+input[type="checkbox"] {
   display: inline;
   width: auto;
   border: none;
 }
 
-input[type='checkbox']:focus {
+input[type="checkbox"]:focus {
   outline: #3d008d solid 1px;
 }
 
