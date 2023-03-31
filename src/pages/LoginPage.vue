@@ -1,12 +1,15 @@
 <template>
-  <q-page padding>
-    <!-- content -->
-    <h1>Register</h1>
-  </q-page>
+ <section>
+  <coach-registration></coach-registration>
+ </section>
 </template>
 
 <script>
+import CoachRegistration from 'src/components/CoachRegistration.vue';
 export default {
   // name: 'PageName',
+  components: {
+    CoachRegistration
+  }
 }
 </script>
