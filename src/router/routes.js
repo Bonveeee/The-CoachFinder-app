@@ -35,11 +35,11 @@ const routes = [
       {
         path: "/about",
         component: () => import("pages/AboutPage.vue"),
-      }
-      // {
-      //   path: "/requests",
-      //   component: () => import("pages/RequestsPage.vue"),
-      // },
+      },
+      {
+        path: "/auth",
+        component: () => import("pages/auth/UserAuth.vue"),
+      },
     ],
   },
 
