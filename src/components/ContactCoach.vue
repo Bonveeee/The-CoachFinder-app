@@ -2,7 +2,7 @@
   <form @submit.prevent="submitForm">
     <div class="form-control">
       <label for="email">Your E-Mail</label>
-      <input type="email" id="email" v-model.trim="email" />
+      <input type="email" id="email" v-model.trim="userEmail" />
     </div>
     <div class="form-control">
       <label for="message">Message</label>
@@ -20,7 +20,7 @@ import BaseButton from "src/components/UI/BaseButton.vue";
 export default {
   data() {
     return {
-      email: '',
+      userEmail: '',
       message: '',
       formIsValid: true,
     };
@@ -32,15 +32,15 @@ export default {
     submitForm() {
       this.formIsValid = true;
       if (
-        this.email === '' ||
-        !this.email.includes('@') ||
+        this.userEmail === '' ||
+        !this.userEmail.includes('@') ||
         this.message === ''
       ) {
         this.formIsValid = false;
         return;
       }
       this.$store.dispatch('requests/contactCoach', {
-        email: this.email,
+        email: this.userEmail,
         message: this.message,
         coachId: this.$route.params.id
       });

@@ -1,4 +1,7 @@
 <template>
+  <base-dialog :show="!!error" title="An error occured" @click="handleError">
+    <p>{{ error }}</p>
+  </base-dialog>
   <section>
     <base-card>
       <header>
@@ -18,19 +21,45 @@
 </template>
 
 <script>
-import RequestsItem from 'src/components/RequestsItem.vue';
-import BaseCard from 'src/components/UI/BaseCard.vue';
+import RequestsItem from "src/components/RequestsItem.vue";
+import BaseCard from "src/components/UI/BaseCard.vue";
+import BaseDialog from "src/components/UI/BaseDialog.vue";
+
 export default {
   components: {
     RequestsItem,
     BaseCard,
+    BaseDialog,
+  },
+  data() {
+    return {
+      isLoading: false,
+      error: null,
+    };
   },
   computed: {
     receivedRequests() {
-      return this.$store.getters['requests/requests'];
+      return this.$store.getters["requests/requests"];
     },
     hasRequests() {
-      return this.$store.getters['requests/hasRequests'];
+      return this.$store.getters["requests/hasRequests"];
+    },
+  },
+  created() {
+    this.loadRequests();
+  },
+  methods: {
+    async loadRequests() {
+      this.isLoading = true;
+      try {
+        await this.$store.dispatch("requests/fetchRequests");
+      } catch (error) {
+        this.error = error.message || "Something Failed to load requests";
+      }
+      this.isLoading = false;
+    },
+    handleError() {
+      this.error = null;
     },
   },
 };

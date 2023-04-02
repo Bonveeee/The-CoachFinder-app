@@ -20,7 +20,7 @@ export default {
     const responseData = await response.json();
 
     if (!response.ok) {
-      const error = new Error(responseData.message || 'Failed to fetch!');
+      const error = new Error(responseData.message || "Failed to fetch!");
       throw error;
     }
 
@@ -30,30 +30,36 @@ export default {
     });
   },
 
-  async loadCoaches(context) {
+  async loadCoaches(context, payload) {
+    if (!payload.forceRefresh && !context.getters.shouldUpdate) {
+      return
+    }
+
     const response = await fetch(
       `https://coach-finder-c95e2-default-rtdb.firebaseio.com/coaches.json`
     );
 
     const responseData = await response.json();
+
     if (!response.ok) {
-        //throw new Error(responseData.message);
-  };
+      const error = new Error(responseData.message || "Failed to fetch!");
+      throw error;
+    }
+    const coaches = [];
 
-  const coaches = []
-
-  for (const key in responseData) {
-    const coach = {
+    for (const key in responseData) {
+      const coach = {
         id: key,
         firstName: responseData[key].firstName,
         lastName: responseData[key].lastName,
         description: responseData[key].description,
         hourlyRate: responseData[key].hourlyRate,
         areas: responseData[key].areas,
-       
-    }
-    coaches.push(coach)
+      };
+      coaches.push(coach);
 
-    context.commit('setCoaches', coaches)
-  }
-}};
+      context.commit("setCoaches", coaches);
+      context.commit("setFetchTimestamp");
+    }
+  },
+};
