@@ -4,6 +4,7 @@ import { createStore } from 'vuex'
 
  import coachesModule from './modules/coaches/index.js'
 import requestModule from './modules/requests/index.js'
+import authModule from './modules/auth/index.js'
 /*
  * If not building with SSR mode, you can
  * directly export the Store instantiation;
@@ -17,24 +18,17 @@ export default store(function (/* { ssrContext } */) {
   const Store = createStore({
     modules: {
      coaches: coachesModule,
-     requests: requestModule
+     requests: requestModule,
+     auth: authModule
+
     },
-    state(){
-      return {
-        userId: 'c3'
-      }
-    },
+   
     getters: {
       coaches(state){
         return state.coaches
       }
     },
-    getters:{
-      userId(state){
-        return state.userId
-      }
-    },
-
+    
 
     // enable strict mode (adds overhead!)
     // for dev mode and --debug builds only
