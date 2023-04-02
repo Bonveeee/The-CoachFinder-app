@@ -17,10 +17,11 @@ export default {
       }
     );
 
-    //const responseData = await response.json();
+    const responseData = await response.json();
 
     if (!response.ok) {
-      // throw new Error(responseData.message);
+      const error = new Error(responseData.message || 'Failed to fetch!');
+      throw error;
     }
 
     context.commit("registerCoach", {
