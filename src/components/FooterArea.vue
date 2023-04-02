@@ -1,7 +1,7 @@
 <template>
-  <q-footer elevated>
-    <q-toolbar class="glossy">
-      <q-toolbar-title>Footer</q-toolbar-title>
-    </q-toolbar>
+  <q-footer class="text-center" elevated>
+   
+    &copy; 2023 Coach Finder. All rights reserved.
+
   </q-footer>
 </template>

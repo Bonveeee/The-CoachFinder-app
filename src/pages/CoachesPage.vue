@@ -7,7 +7,7 @@
   <section>
     <base-card>
       <div class="controls">
-        <base-button mode="outline">refresh</base-button>
+        <base-button mode="outline" @click="loadCoaches">refresh</base-button>
         <base-button
           v-if="!isCoach"
           v-model="tab"
@@ -62,10 +62,16 @@ export default defineComponent({
     BaseButton,
     CoachFilter,
   },
+  created() {
+    this.loadCoaches();
+  },
   methods: {
     setFilter(updatedFilters) {
       this.activeFilters = updatedFilters;
     },
+    loadCoaches() {
+      this.$store.dispatch('coaches/loadCoaches')
+    }
   },
   computed: {
     isCoach() {

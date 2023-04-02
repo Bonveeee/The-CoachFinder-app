@@ -1,6 +1,9 @@
 <template>
-  <h2>Want to Build your dreams? <span>We got you covered!</span></h2>
-  <div class="q-pa-md">
+  <div class="carousel-wrapper" >
+   <div class="carousel-title-wrapper">
+     <h2 class="carousel-title">Want to Build your dreams? <span>We got you covered!</span></h2>
+   </div>
+   <div class="q-pa-md">
     <q-carousel
       animated
       v-model="slide"
@@ -19,22 +22,44 @@
       <q-carousel-slide :name="4" img-src="https://images.unsplash.com/photo-1586084039069-a42a1d8bf8f9?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8OXx8cGxheWVyc3xlbnwwfHwwfHw%3D&auto=format&fit=crop&w=1600&q=60" />
     </q-carousel>
   </div>
+  
+ </div>
 </template>
 
 <script>
 import { defineComponent } from 'vue'
-import {ref} from 'vue'
+import { ref } from 'vue'
 
 export default defineComponent({
-  name: 'IndexPage',
-  setup() {
-    const slide = ref(1)
-    const autoplay = ref(true)
+ name: 'IndexPage',
+ setup() {
+   const slide = ref(1)
+   const autoplay = ref(true)
 
-    return {
-      slide,
-      autoplay
-    }
-  }
+   return {
+     slide,
+     autoplay
+   }
+ }
 })
 </script>
+
+<style scoped>
+
+.carousel-title-wrapper {
+ margin-bottom: 24px;
+ margin-top: 24px;
+ text-align: center;
+}
+
+.carousel-title {
+ font-size: 32px;
+ font-weight: bold;
+ margin: 0;
+}
+
+.carousel-title span {
+ color: #4b16af;
+}
+
+</style>

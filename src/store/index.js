@@ -2,8 +2,8 @@ import { store } from 'quasar/wrappers'
 import { createStore } from 'vuex'
 
 
- import coachesModule from './modules/coaches/index'
-
+ import coachesModule from './modules/coaches/index.js'
+import requestModule from './modules/requests/index.js'
 /*
  * If not building with SSR mode, you can
  * directly export the Store instantiation;
@@ -16,7 +16,8 @@ import { createStore } from 'vuex'
 export default store(function (/* { ssrContext } */) {
   const Store = createStore({
     modules: {
-     coaches: coachesModule
+     coaches: coachesModule,
+     requests: requestModule
     },
     state(){
       return {

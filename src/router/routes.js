@@ -21,8 +21,8 @@ const routes = [
         ],
       },
       {
-        path: "/players",
-        component: () => import("pages/PlayersPage.vue"),
+        path: "/requests",
+        component: () => import("pages/RequestsPage.vue"),
       },
       {
         path: "/events",
@@ -35,11 +35,11 @@ const routes = [
       {
         path: "/about",
         component: () => import("pages/AboutPage.vue"),
-      },
-      {
-        path: "/requests",
-        component: () => import("pages/RequestsPage.vue"),
-      },
+      }
+      // {
+      //   path: "/requests",
+      //   component: () => import("pages/RequestsPage.vue"),
+      // },
     ],
   },
 
